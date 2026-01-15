@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,8 +36,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     GreetingImage(
-                        message = "Happy Birthday Sam!",
-                        from = "From Emma"
+                        message = "Happy Birthday Madie!",
+                        from = "From Cade"
                     )
                 }
             }
@@ -68,12 +69,14 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
         val image = painterResource(R.drawable.androidparty) // Loads the drawable image
-        Box(modifier){
-            Image(
+        Box(modifier){ // Allows elements to be stacked
+            Image( // Displays image first (in back)
                 painter = image,
-                contentDescription = null
+                contentDescription = null,
+                contentScale = ContentScale.Crop, // Crops the image to fill the screen
+                alpha = 0.5F // Changes the opacity to 50%
             )
-            GreetingText(
+            GreetingText( // Displays text second (in front)
                 message = message,
                 from = from,
                 modifier = Modifier
