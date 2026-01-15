@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -33,15 +34,17 @@ class MainActivity : ComponentActivity() {
     // This function displays text in the UI by calling the Text() composable function
     @Composable
     fun GreetingText(message: String, from : String, modifier: Modifier = Modifier) {
-        Text( // Main message
-            text = message,
-            fontSize = 100.sp, // Changes the font size
-            lineHeight = 116.sp
-        )
-        Text( // Second message
-            text = from,
-            fontSize = 36.sp // Changes the line height
-        )
+        Column(modifier = modifier) { // Arranges text objects into a column layout
+            Text( // Main message
+                text = message,
+                fontSize = 100.sp, // Changes the font size
+                lineHeight = 116.sp // Changes the line height
+            )
+            Text( // Second message
+                text = from,
+                fontSize = 36.sp // Changes the line height
+            )
+        }
     }
 
     // This function calls the "GreetingText" function and displays it in the UI preview
